@@ -1,0 +1,27 @@
+push Step1a
+down < Step1a.tst
+pop
+
+push Step1b
+down < Step1b.tst
+pop
+
+push Step1c
+down < Step1c.tst
+pop
+
+push Step2
+down < Step2.tst
+pop
+
+push Step3
+down < Step3.tst
+pop
+
+push Step4
+down < Step4.tst
+pop
+
+regex Step5a .o. Step5b ;
+down < Step5.tst
+pop

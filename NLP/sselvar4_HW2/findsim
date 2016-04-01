@@ -1,0 +1,70 @@
+#!/usr/bin/env python
+import argparse
+import random
+import sys
+import math
+import operator
+import collections
+
+# This function converts the file into a dictionary where the word is the key and all subsequent column values act as a list which is the value of the dictionary.
+def read_file(lexFile):
+	dictionary = {}
+	with open(lexFile) as fin:
+		next(fin)
+        	rows = ( line.rstrip('\n').split('\t') for line in fin )
+     		dictionary = { row[0]:row[1:] for row in rows }
+	return dictionary
+
+#This function is called when a single word is passed as a n argument and returns the 5 words closest to that word
+def compare_words(wordVector,dictionary):
+	dict2 = {}
+	for words in dictionary:
+		if words <> wordVector:
+			dict2[words] = cosine_similarity(dictionary[wordVector],dictionary[words])
+	result = collections.Counter(dict2).most_common(5)
+	print "The 5 most similar words to ",wordVector," are:"	
+	for key in result:
+		print key[0]
+
+#This function finds the words that matches closest to the entered analogy
+def compare_analogies(wordVector,dictionary):
+	dict2 = {}
+	sim1 = cosine_similarity(dictionary[wordVector[0]],dictionary[wordVector[1]])
+	for words in dictionary:
+		if words not in wordVector:
+			dict2[words] = cosine_similarity(dictionary[words],dictionary[wordVector[2]])
+	for words in dict2:
+		dict2[words] = abs(dict2[words] - sim1)
+	sorted_dict = sorted(dict2.items(), key=operator.itemgetter(1))    
+	result = list(sorted_dict)[:5]	
+	print "The 5 most similar words to ",wordVector," are:"	
+	for key in result:
+                print key[0]
+
+#This function finds the cosine similarity for 2 word vectors.
+def cosine_similarity(v1,v2):
+    sumxx, sumxy, sumyy = 0, 0, 0
+    for i in range(len(v1)):
+        x = float(v1[i])
+	y = float(v2[i])
+        sumxx += x*x
+        sumyy += y*y
+        sumxy += x*y   	
+    return sumxy/(math.sqrt(sumxx)*math.sqrt(sumyy))	
+
+#Main funciton that takes in the command line arguments and calls subsequent functions accordingly.
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('filename',help='Lexicon file')
+    parser.add_argument('vector', nargs = '+',help='The word vector')
+    args = parser.parse_args()
+    lex_file = args.filename
+    word_vector = args.vector
+    dictionary = read_file(lex_file)
+    if(len(word_vector)==1):
+	compare_words(word_vector[0],dictionary)    
+    else:
+	compare_analogies(word_vector,dictionary)	
+
+if __name__ == '__main__':
+    main()

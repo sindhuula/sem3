@@ -1,0 +1,297 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Natural Language Processing Assignment 2}
+\author{Sindhuula Selvaraju(sselvar4)}
+
+\begin{document}
+
+\maketitle
+\paragraph{Axioms:}
+\\
+\begin{enumerate}
+    \item p(E) = 1
+    \item p(X $\cup$ Y) = p(X) + p(Y) if X$\cap$Y = $\emptyset$
+\end{enumerate}
+\section{Question 1:}
+{
+\paragraph{(a.)}
+\\Given: $Y\subseteq Z$ 
+\\To Prove: $p(Y) \leq p(Z)$
+\\Proof:
+\\Y and $(\neg Y \cap Z)$ are disjoint sets since $(\neg Y \cap Z)$ gives elements in Z not in Y. 
+\\ p(Z) = p(Y $\cup$ ($\neg$Y $\cap$ Z))
+\\ p(Z) = p(Y) + p($\neg$Y $\cap$ Z) (From Axiom 2)
+\\ p(Z) $\geq$ p(Y)
+\\ \Rightarrow p(Y) $\leq$ p(Z)
+\\Hence Proved
+\\
+\paragraph{(b.)}
+\\Given: (X$\mid$ Z)
+\\To Prove: 0$\leq$p(X$\mid$ Z)$\leq$1
+\\Proof:
+\\We know p(X$\mid$ Z) = $\frac{p(X\cap Z)}{p(Z)}$
+\\We know that 0 $\leq$ p(Z) $\leq$ 1
+\\We also know that in our case p(Z) $\neq$ 0 as it would make the answer not defined.
+\\\Rightarrow 0 < p(Z)$\leq$ 1
+\\Also since X$\cap$Z $\subset$ Z hence from part (a.)
+\\p(X$\cap$Z) $\leq$ p(Z)
+\\\Rightarrow (1.) 0 $\leq$ p(X $cap$ Z) $\leq$ 1
+\\ \Rightarrow(2.) $\frac{p(X\cap Z)}{p(Z)} \leq$ 1
+\\ From (1.) and (2.) we get:
+\\ 0 $\leq \frac{p(X\cap Z)}{p(Z)} \leq$ 1
+\\\Rightarrow 0 $\leq$ p(X$\mid$ Z) $\leq$ 1 
+\\Hence Proved
+\\
+\paragraph{(c.)}
+\\To Prove: p($\emptyset$)  = 0
+\\Proof:
+\\From axiom 1: p(E) = 1
+\\We know: (1.) E = E $\cup\: \emptyset$
+\\Also: E $\cap \:\emptyset \:=\: \emptyset $
+\\Using axiom 2: 
+\\p(E $\cup \: \emptyset$) = p(E) + p($\emptyset$)
+\\p($\emptyset$) = p(E $\cup \: \emptyset$) - p(E)
+\\From (1.)
+\\p($\emptyset$) = p(E) - p(E)
+\\\Rightarrow p($\emptyset$) = 0
+\\Hence Proved
+\\
+\paragraph{(d.)}
+\\Given: $\neg$X = E - X
+\\To Prove: p(X) = 1 - p($\neg$X)
+\\Proof:
+\\Since $\neg$X = E - X (Set minus)
+\\\Rightarrow (1.) $\neg$ X $\cup$ X = E
+\\ Since X and it's negation will be disjoint sets
+\\ X $\cap \neg$X = $\emptyset$
+\\ From axiom 2:
+\\ p(X $\cup \neg$ X) = p(X) + p($\neg$X)
+\\ From (1.)
+\\ p(E) = p(X) + p($\neg$X)
+\\ From axiom 1:
+\\ 1 = p(X) + p($\neg$X)
+\\ p(X) = 1 - p($\neg$X)
+\\Hence Proved
+\paragraph{(e.)}
+\\To Prove: p(singing AND rainy $\mid$ rainy) = p(singing $\mid$ rainy)
+\\Let singing = X and raing = Y
+\\To Prove: p(X AND Y $\mid$ Y) = p(X $\mid$ Y)
+\\Proof:
+\\Since X and Y are independent events:
+\\p(X$\mid$Y) = $\frac{p(X\cap Y)}{p(y)}$
+\\p(X AND Y $\mid$ Y) = p(X $\cap$ Y $\mid$ Y) = $\frac{p((X$\cap$ Y)$\cap$Y)}{p(Y)}$
+\\Y $\cap$ Y = Y
+\\p(X AND Y $\mid$ Y) = p(X $\cap$ Y $\mid$ Y) = $\frac{p(X$\cap$ Y)}{p(Y)}$ = p(X$\mid$Y)
+\\Hence Proved
+\paragraph{(f.)}
+\\To Prove: p(X $\mid$ Y) = 1 - p($\neg$X $\mid$ Y)
+\\Proof:
+\\p(X $\mid$ Y) = $\frac{p(X\cap Y)}{p(y)}$
+\\p($\neg$X $\mid$ Y) = $\frac{p(\neg X\cap Y)}{p(y)}$
+\\X and $\neg$ X form disjoint sets.
+\\(X $\cap$ Y) = Y $\setminus$ ($\neg$X $\cap$Y)
+\\\Rightarrow Y = (X $\cap$ Y) + ($\neg$X $\cap$Y)
+\\\Rightarrow Y = (X $\cap$ Y) $\cup$ ($\neg$X $\cap$Y)
+\\ p(Y) = p((X $\cap$ Y) $\cup$ ($\neg$X $\cap$Y))
+\\p(Y) = p(X $\cap$ Y) + p($\neg$X $\cap$ Y)
+\\Dividing by p(Y)
+\\1 = p(X $\mid$ Y) + p($\neg$X $\mid$ Y)
+\\\Rightarrow p(X $\mid$ Y) = 1 -  p($\neg$X $\mid$ Y)
+\\Hence Proved
+\paragraph{(g.)}
+\\To Simplify: (p(X$\mid$Y).p(Y)+p(X$\mid \neg$ Y).p($\neg$Y)).p($\neg$Z$\mid$X)/p($\neg$Z)
+\\Proof:
+\\p(X$\mid$Y) = $\frac{p(X\cap Y)}{p(Y)}$
+\\p(X$\mid \neg$Y) = $\frac{p(X\cap \neg Y)}{p(\neg Y)}$
+\\\Rightarrow (\frac{p(X\cap Y)}{p(Y)} .p(Y)+$\frac{p(X\cap \neg Y)}{p(\neg Y)}$.p($\neg$Y)).p($\neg$Z$\mid$X)/p($\neg$Z)
+\\\Rightarrow (p(X$\cap$ Y)+p(X$\cap \neg$ Y)).p($\neg$Z$\mid$X)/p($\neg$Z)
+\\From axiom 2:
+\\\Rightarrow (p(X$\cap$ Y) $\cup$ (X$\cap \neg$ Y)).p($\neg$Z$\mid$X)/p($\neg$Z)
+\\\Rightarrow p(X).{p($\neg$Z$\mid$X)}{p($\neg$Z)}
+\\\Rightarrow $p(X).\frac{p(\neg Z \cap X)}{p(X)}\ $/p($\neg$Z)
+\\\Rightarrow p($\neg$ Z $\cap$ X)/p($\neg$Z)
+\\\Rightarrow p(X$\cap \neg$ Z)/p($\neg$Z)
+\\\Rightarrow p(X$\mid \neg$Z)
+\\Hence Proved
+\paragraph{(h.)}
+\\p(singing OR rainy) = p(singing) + p(rainy)
+\\\Rightarrow p(singing $\cup$ rainy) = p(singing) + p(rainy)
+\\This condition will only be true if the two sets are disjoint. So if I will never sing when it's rainy then this condition is true.
+\paragraph{(i.)}
+
+\\p(singing AND rainy) = $p(singing) . p(rainy)$
+\\\Rightarrow $p(singing \cap \: rainy) = p(singing) . p(rainy)$
+\\\Rightarrow $p(singing $\mid$ rainy) = p(rainy)$
+\\\Rightarrow $p(singing in the rain)  = p(rainy)$
+\\$This condition will only be true if I always sing when it's rainy.$
+\paragraph{(j.)}
+\\Given: p(X$\mid$Y) = 0
+\\To Prove: p(X$\mid$Y,Z) = 0
+\\Proof:
+\\p(X$\mid$Y) = p(X$\cap$Y)/p(Y) = 0
+\\\Rightarrow $p(X\cap Y) = 0$
+\\p(X$\mid$Y,Z) = p(X$\mid$(Y$\cap$Z)) = p(X $\cap$ Y $\cap$ Z)/p(Y $\cap$ Z) = p(Z$\mid$(X$\cap$Y)).P(X$\cap$Y)/p(Y$\cap$Z) = 0
+\\Hence Proved
+\paragraph{(k.)}
+\\Given: p(W$\mid$Y) = 1
+\\To Prove: p(W$\mid$Y,Z) = 1
+\\Proof:
+\\$$p(W \mid Y,Z) = \frac{p(W,Y,Z)}{\sum_w p(Y,Z,W)}$$
+\\$$p(W \mid Y,Z) = \frac{p(z\mid Y,W).p(W\mid Y).p(Y)}{\sum_w p(Z \mid Y,W).p(W \mid Y).p(Y)}$$
+\\$$p(W \mid Y,Z) = \frac{p(Z \mid Y,W).p(W \mid Y).p(Y)}{p(Z \mid Y,W).p(W \mid Y).p(Y)+p(Z \mid Y,W).p(W \mid Y).p(Y)}$$
+\\$$p(W \mid Y,Z) = \frac{p(Z \mid Y,W).p(W \mid Y).p(Y)}{p(Z \mid Y,W).p(W \mid Y).p(Y)}$$
+\\$$p(W \mid Y,Z) = 1
+
+}
+\section{Question 2.}
+\paragraph{(a.)}
+\\p(Actual = blue) = p(Y)
+\\p(Claimed = blue) = p(X)
+\\p(Y $\mid$ X) = $\frac{p(X\mid Y).p(Y)}{p(X)}$
+\\p(Y $\mid$ X) = $\frac{p(X\mid Y).p(Y)}{\sum_{y}(p(X \mid Y).p(Y))}$
+
+\paragraph{(b.)}
+\\Prior Probability = p(Actual = blue)
+\\Likelihood of the Evidence = p(Claimed = blue $\mid$ Actual = blue)
+\\Posterior Probability = p(Actual = blue $\mid$ Claimed = blue)
+\paragraph{(c.)}
+\\p(Actual = blue) = p(Y) = 0.1
+\\p(Actual = red) = p($\neg$Y) = 0.9
+\\p(Claimed = blue $\mid$ Actual = blue) =p(X$\mid$Y) = 0.8
+\\p(Claimed = blue $\mid$ Actual = red) = p(X$\mid \neg$Y) = 0.2
+\\p(Actual = blue$\mid$Claimed = blue) = p(Y$\mid X$) = $\frac{p(X\mid Y).p(Y)}{p(X \mid Y).p(Y)+ p(X \mid \neg Y).p(\neg Y)}$ 
+\\p(Actual = blue$\mid$Claimed = blue) = p(Y$\mid X$) = $\frac{(0.8)(0.1)}{(0.8)(0.1)+(0.9)(0.2)}= \frac{0.08}{0.08+0.18}=\frac{0.08}{0.26}=0.3$
+\\Ans: p(Actual = blue$\mid$Claimed = blue) = 0.3
+\\The judge should care about the posterior probability. 
+\paragraph{(d.)}
+\\To Prove:
+p(A$\mid$B,Y) = $\frac{p(B\mid A,Y).p(A\mid Y)}{p(B \mid Y)}$
+\\Proof:
+\\p(A,B,Y) = p(Y,B,A)
+\\By chain rule
+\\p(A$\mid$B,Y).p(B$\mid$Y).p(Y)=p(Y$\mid$A,Y).p(B$\mid$ A).p(A)
+\\p(A$\mid$B,Y) = $\frac{p(Y\mid A,Y).p(B \mid A).p(A)}{p(B\mid Y).p(Y)}$
+\\
+\\p(A$\mid$B,Y) = $\frac{p(Y\mid A,Y).p(B,A)}{p(B,Y)}$
+\\
+\\p(A$\mid$B,Y) = $\frac{p(Y\mid A,Y).p(A\mid B).p(B)}{p(B \mid Y).p(B)}$
+\\
+\\p(A$\mid$B,Y) = $\frac{p(Y\mid A,Y).p(A\mid B)}{p(B \mid Y)}$
+\\Hence Proved
+\paragraph{(e.)}
+\\To Prove: p(A$\mid$B,Y) = $\frac{p(B\mid A,Y).p(A\mid Y)}{p(B \mid A,Y).p(A \mid Y)+p(B \mid \neg A,Y).p(\neg A \mid Y)}$
+\\Proof:
+\\By the Total Law of Probability:
+\\p(B $\mid$ Y) = $\sum_n p(B \mid Y, A_i).p(A_i \mid Y)$ = p(B $\mid$ Y,A).p(A $\mid$ Y)+p(B $\mid$Y,$\neg $A).p($\neg$A $\mid$ Y)
+\\Using above proof with proof of part (d.)
+\\p(A$\mid$B,Y) = $\frac{p(B\mid A,Y).p(A\mid B)}{p(B \mid Y)}$ = $\frac{p(B\mid A,Y).p(A\mid B)}{p(B \mid Y,A).p(A \mid Y)+p(B \mid Y,\neg A).p(\neg A \mid Y)} = \frac{p(B\mid A,Y).p(A\mid B)}{p(B \mid A,Y).p(A \mid Y)+p(B \mid \neg A,Y).p(\neg A \mid Y)}$
+\paragraph{(f.)}
+\\p(A$\mid$B,Y) = $\frac{p(B\mid A,Y).p(A\mid B)}{p(B \mid A,Y).p(A \mid Y)+p(B \mid \neg A,Y).p(\neg A \mid Y)}$
+\\p(A) = p(Actual = blue)
+\\p(A$\mid$Y)=P(Actual = blue $\mid$ City = Baltimore)= 0.1
+\\p($\neg$ A $\mid$ Y) = 0.9
+\\p(B) = p(Claimed = blue)
+\\p(Y) = p(City = Baltimore)
+\\p(Claimed = blue $\mid$ Actual = blue and City = Baltimore) =p(B$\mid$A,Y) = 0.8
+\\p(Claimed = blue $\mid$ Actual = red and City = Baltimore) = p(B$\mid \neg$A,Y) = 0.2
+\\p(Actual = blue$\mid$Claimed = blue,City = Baltimore) = $\frac{p(B\mid A,Y).p(A\mid B)}{p(B \mid A,Y).p(A \mid Y)+p(B \mid \neg A,Y).p(\neg A \mid Y)}$
+= $\frac{(0.8)(0.1)}{(0.8)(0.1)+(0.2)(0.9)}$
+\section{Question 3.}
+\paragraph{(a.)}
+\\$$\sum_{cry} p(cry \mid situation) = 1$$  
+\paragraph{(b.)}
+\begin{center}
+ \begin{tabular}{||c |c |c |c |c ||} 
+ \hline
+ p(cry,situation) & Predator! & Timber! & I need help! & TOTAL\\ [0.5ex] 
+ \hline\hline
+ bwa & 0 & 0 & 0.64 & 0.64 \\ 
+ \hline
+ bwee & 0 & 0 & 0.08 & 0.08 \\
+ \hline
+ kiki & 0.2 & 0 & 0.08 & 0.28 \\
+ \hline
+ TOTAL & 0.2 & 0 & 1 & 1 \\ [1ex] 
+ \hline
+\end{tabular}
+\end{center}
+\paragraph{(c.)}
+\begin{enumerate}
+    \item This probability is written as: p(predator $\mid$ kiki)
+    \item It can be re-written as: $\frac{p(predator \cap kiki)}{p(kiki)}$
+    \item This value is: $1/1.4 = 0.714$
+    \item Representing by Bayes Theorem = \\$\frac{p(kiki \mid predator).p(predator)}{p(kiki \mid predator).p(predator)+p(kiki \mid timber).p(timber)+p(kiki \mid I need help).p(I need help)}$.
+    \item Applying this value we get: $\frac{(1)(1)}{(1).(1)+(0.3).(1)+(0.1)(1)}=\frac{1}{1+0.3+0.1} = \frac{1}{1.4}= 0.714$ 
+\end{enumerate}
+\section{Question 4.}
+\paragraph{(a.)}
+\\c(BOS BOS) = Number of sentences in the corpus
+\\c(BOS BOS i) = Number of sentences in the corpus beginning with i
+\\c(new york EOS) = Number of sentences in corpus ending with "new york"
+\\
+\paragraph{(b.)}
+Sentences ending with the will very few in the trigram model because in daily use very few sentences actually end with the unless it's being used to give an example. Therefore the count of sentence in the trigram model with c(<any word> the EOS) will be very low.
+\paragraph{(c.)}
+\\Expression (A) represents the probability (2)
+\\Expression (B) represents the probability (1)
+\\Expression (C) represents the probability (3)
+\section{Question 5.}
+\\We can have that the probability of a word occurring in the sentence related to the topic is known to be:
+\\(1.)$$p(w1) =\sum_a p(w1,a) = \sum_a p(w \mid a).p(a)$$ 
+\\Applying the chain rule we will get:
+\\p(w1w2w3w4) = p(w4 $\mid$ w3,w2,w1).p(w3 $\mid$ w2,w1).p(w2 $\mid$ w1).p(w1)
+\\Applying Backoff we get:
+\\p(w1w2w3w4) = p(w4 $\mid$ w3).p(w3 $\mid$ w2).p(w2 $\mid$ w1).p(w1)
+\\Since w4 also depends on topic a and applying (1.):
+\\$$p(w1w2w3w4) = \sum_a p(w1\mid a).p(a) . p(w2 \mid w1).p(w3 \mid w2).p(w4 \mid w3,a).p(a)$$
+\section{Question 8.}
+\paragraph{(a.)}
+\\Words most similar to seattle: 
+\\('seahawks', 0.7584770173520642)
+\\('spokane', 0.7537916531779193)
+\\('tacoma', 0.7130779873872513)
+\\('florida', 0.7101946735617494)
+\\('atlanta', 0.6844511947308375)
+\\\\Words most similar to dog:
+\\('badger', 0.8274039535533966)
+\\('dogs', 0.7999787247219944)
+\\('hound', 0.7997083546063275)
+\\('cat', 0.7923282309098834)
+\\('borzoi', 0.7655383137965014)
+\\\\Words most similar to communist:
+\\('socialist', 0.8748215803139728)
+\\('communists', 0.8186312375961906)
+\\('comintern', 0.8121129342824249)
+\\('bolshevik', 0.7949960236029026)
+\\('leftist', 0.782475162369655)
+\\\\Words most similar to jpg:
+\\('png', 0.7579223621326954)
+\\('svg', 0.6581031713263814)
+\\('galleria', 0.6346978281687118)
+\\('gif', 0.6145762699413159)
+\\('fuji', 0.6097295357138396)
+\\\\Words most similar to the:
+\\('its', 0.7833705128890759)
+\\('in', 0.7706653200020734)
+\\('entire', 0.764974819915639)
+\\('of', 0.7520807481408093)
+\\('which', 0.7429706311725716)
+\\\\Words most similar to google:
+\\('com', 0.7459154998491606)
+\\('yahoo', 0.7372151542300177)
+\\('faq', 0.7262755144331383)
+\\('flickr', 0.6973469881552221)
+\\('web', 0.6891644937156803)
+\\\\I noticed that words with commonly used alphabets and words like a,t,e,i, the etc have words with more similarity than words with rarely used characters like z,g, information etc
+\\\\Smaller values of d give higher similarity values and larger values give lower similarity values both result in some new words with higher similarity than previous set of words.
+\\Higher value of d also make the words more related to the original topic/word for example for a word like size using d=100 I got words like sizes,diameter,thickness,density,weight as the 5 most similar words which is true since they all deal with measurement.
+\\Smaller value of d resulted in words that were comparative for example for size using d=10 I got smaller, slightly, narrower etc.
+\paragraph{(b.)}
+When checking for seattle seattle seattle with the new program I got the same result as the one for part (a.).
+\\We make use of king-man to find a base to compare the analogy with. 
+\\With smaller d value get more varied results that do not go with the analogy. 
+\\With larger d values we get more accurate results.
+\\This mainly works because it sees how similar pair of words are to each other.
+\\NOTE: To execute run as ./findsim arg1 arg2
+\end{document}

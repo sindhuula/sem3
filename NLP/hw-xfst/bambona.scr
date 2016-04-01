@@ -1,0 +1,29 @@
+# This is a script file for xfst.  
+# To load it into xfst, type
+#    source bambona.scr
+# which will run all the commands in the script.
+
+# The multicharacter symbol 'e denotes an accented e, and so forth.
+# Roots such as "mad" and "l'er" must be written as 
+#    m a d
+#    l 'e r
+# but the abbreviation {mad} is available for the former case, since
+# all the symbols are single characters.
+
+define NounRoot	    {mad}|{nat}|{posk}|{rip}|{kuzm}|{karj}
+	 	    |{zib}| l 'e r | k 'o p | {sob}| m 'e l k | {rut} ;
+
+define Attitude	    %+Pej:{ak} | %+Dim:{et} | %+Aug:{ig} ;
+define Confidence   %+Obv:{izm} | %+Prob:{ubap} | %+All:['o p o t] ;
+define Number 	    %+Pl:{il} | %+Pauc:{ejak} | %+NoNum:0 ;  # note the epsilon
+define Case 	    %+Nom:0 | %+Acc:{am} | %+Dat:{ad} | %+Abl:{it} | %+Ben:{ek} 
+		    | %+Gen:{ozk} (%+Inalien:{on}) # slightly tricky stuff here
+		    | [%+Ine:['e m] | %+Ela:['o t]] (%+Int:{el})     # and here
+		    | %+Com:{ep} (%+Neg:{eg}) ;
+
+# Type "print words Case" to see ALL the paths through the
+# compiled Case transducer.
+
+define NounMorphology   NounRoot (Attitude) (Confidence) Number Case ;
+define Phonology        i -> u, e -> o, 'e -> 'o || [p|t|k] _ ;
+define NounMorphPhon    NounMorphology .o. Phonology ;

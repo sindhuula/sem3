@@ -1,0 +1,85 @@
+\documentclass[letterpaper, 11pt]{article}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{times}
+\usepackage{amsmath,amsfonts,amsthm}
+\usepackage{graphicx}
+
+\begin{document}
+
+\title{Homework \#1 \\ Introduction to Algorithms/Algorithms 1 \\ 600.363/463 \\ Spring 2016}
+\author{\textbf{Due on:} Thursday, February 4rd, 5pm \\
+\textbf{Late submissions:} will NOT be accepted\\
+\textbf{Format:} Please start each problem on a new page.
+\\\textbf{Where to submit:} On blackboard, under student assessment. \\
+Otherwise, please bring your solutions to the lecture.
+\\}
+\maketitle
+
+\section{Problem 1 (25 points)}
+
+\subsection{(15 points)}
+For each statement below explain if it is true or false and prove
+your answer. Be as precise as you can. The base of $\log$ is $2$ unless stated otherwise.
+
+\begin{enumerate}
+
+\item  ${n\over \log n} = \Theta(n)$
+
+\item $2^n = o(3^{n})$
+
+\item $2^n = \Theta(\left(\frac{3}{2}\right)^{n})$
+
+\item $2^n = O(e^{n+\log n})$
+
+\item $\log \log n = O(\log({\sqrt{n}\over 3\log n})+\log(n-\log n))$
+
+\item Let $f,g,h$ be positive functions. Then $h(n)/(f(n)+g(n)) = O(h(n)/(f(n)g(n)))$
+
+\item Let $f,g$ be positive functions. Then $|f(n) - g(n)| = \Theta(\min(f(n),g(n)))$
+
+\item Let $f,g$ be positive functions. Then $f(n) + g(n) = \Theta(\max(f(n),g(n)))$
+
+\item $n^{n\log n} = \Omega(e^{n^2 - n\log n})$
+
+\item Let $f, g, h$ be a positive functions. If $g(n) = o(f(n))$ and $f(n) = O(h(n))$, then $g(n) = o(h(n))$.
+
+
+\end{enumerate}
+
+
+\subsection{(10 points)}
+
+\begin{enumerate}
+
+\item Prove that $$\sum_{i=1}^n i^2\ln\left(e + {1\over i}\right)  = \Theta(n^3).$$
+
+\end{enumerate}
+
+\section{Problem 2(25 Points)}
+
+\subsection{(10 points)}
+
+Prove by induction that ${2n \choose n} > \frac{2^n}{{\sqrt{\pi n}}}$ for all positive $n$.
+
+\subsection{(15 points)}
+
+\begin{enumerate}
+
+\item Let $A,B,C$ be sets. Prove that 
+\begin{enumerate}
+\item$A\setminus (A \setminus B) = A \cap B$
+\item$A \cup B = (A \setminus B) \cup (A \cap B) \cup (B \setminus A)$
+\item$A \setminus (B \setminus C) = (A \setminus B) \cup (A \cap C)$
+\end{enumerate}
+
+\item There are $n$ identical apples in the basket. What is the number of different ways to divide the apples between Alice, Bob and John?
+What is the answer if we request that Alice and John get at most $k < n/2$ apples each?
+
+
+\item Suppose that a random machine outputs each number from $1$ to $x-1$ with equal probability. What is probability that the output is coprime with $x$, where $x = 3^n5^m7^k$ and $n,m,k \in \mathcal Z$. 
+
+\item Assume there are $n$ students in a class. How many different ways are there to form $n/k$ teams with $k$ students in each?
+
+\end{enumerate}
+\end{document}

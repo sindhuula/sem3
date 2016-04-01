@@ -1,0 +1,5 @@
+#!/usr/local/bin/bash
+#
+#
+java -classpath ./Parse/bin -Xmx1024M nlp_parse.main.MainParser $*
+

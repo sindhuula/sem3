@@ -1,0 +1,7 @@
+triplicate
+formative
+formalize
+electriciti
+electrical
+hopeful
+goodness

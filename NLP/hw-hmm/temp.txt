@@ -1,0 +1,58 @@
+C:\Users\Sindhuula\Desktop\MS\Sem 3\sem3\NLP\hw-hmm>python code\vtag.py data\entrain data\entest
+Tagging accuracy (Viterbi decoding): 92.48% (known: 95.99% novel: 56.07%)
+Perplexity per Viterbi-tagged test word: 1577.499
+
+C:\Users\Sindhuula\Desktop\MS\Sem 3\sem3\NLP\hw-hmm>python code\vtag.py data\ictrain data\ictest
+Tagging accuracy (Viterbi decoding): 87.88%     (known: 87.88%  novel: 0.00%)
+Perplexity per Viterbi-tagged test word: 3.620
+
+C:\Users\Sindhuula\Desktop\MS\Sem 3\sem3\NLP\hw-hmm>python code\vtag.py data\ic2train data\ic2test
+Tagging accuracy (Viterbi decoding): 90.91%     (known: 90.32%  novel: 100.00%)
+Perplexity per Viterbi-tagged test word: 8.152
+
+C:\Users\Sindhuula\Desktop\MS\Sem 3\sem3\NLP\hw-hmm>python code\vtag.py data\entrain data\entest
+Tagging accuracy (Viterbi decoding): 94.15%     (known: 96.86%  novel: 66.08%)
+Perplexity per Viterbi-tagged test word: 973.271
+
+C:\Users\Sindhuula\Desktop\MS\Sem 3\sem3\NLP\hw-hmm>python code\vtag.py data\entrain4k data\entest
+Tagging accuracy (Viterbi decoding): 83.29%     (known: 96.57%  novel: 59.26%)
+Perplexity per Viterbi-tagged test word: 1078.848
+
+C:\Users\Sindhuula\Desktop\MS\Sem 3\sem3\NLP\hw-hmm>python code\vtag.py data\entrain10k data\entest
+Tagging accuracy (Viterbi decoding): 88.02%     (known: 96.46%  novel: 62.86%)
+Perplexity per Viterbi-tagged test word: 1085.756
+
+C:\Users\Sindhuula\Desktop\MS\Sem 3\sem3\NLP\hw-hmm>python code\vtag.py data\entrain25k data\entest
+Tagging accuracy (Viterbi decoding): 91.09%     (known: 96.51%  novel: 64.22%)
+Perplexity per Viterbi-tagged test word: 1073.826
+
+C:\Users\Sindhuula\Desktop\MS\Sem 3\sem3\NLP\hw-hmm>python code\vtag.py data\cztrain data\cztest
+Tagging accuracy (Viterbi decoding): 47.43%     (known: 92.66%  novel: 2.84%)
+Perplexity per Viterbi-tagged test word: 24863.423
+
+
+
+
+
+
+
+
+* * * ITERATION 0 * * *
+Tagging accuracy (Viterbi decoding): 91.09       (known: 96.52   seen: 62.86     novel: 65.65 )
+Perplexity per Viterbi-tagged test word: 1107.52
+Perplexity per untagged raw word: 1300.02
+
+* * * ITERATION 1 * * *
+Tagging accuracy (Viterbi decoding): 91.65       (known: 96.50   seen: 69.64     novel: 65.49 )
+Perplexity per Viterbi-tagged test word: 918.82
+Perplexity per untagged raw word: 717.09
+
+* * * ITERATION 2 * * *
+Tagging accuracy (Viterbi decoding): 91.27       (known: 96.35   seen: 67.02     novel: 65.08 )
+Perplexity per Viterbi-tagged test word: 904.33
+Perplexity per untagged raw word: 679.87
+
+* * * ITERATION 3 * * *
+Tagging accuracy (Viterbi decoding): 90.73       (known: 96.27   seen: 63.72     novel: 62.74 )
+Perplexity per Viterbi-tagged test word: 899.90
+Perplexity per untagged raw word: 653.48
